@@ -73,7 +73,7 @@ class MultiTempMatching(Free):
                                       )
         
         
-        IPy.showTable(tableHit, "Multi-Template-Matching detections")
+        IPy.show_table(tableHit, "Multi-Template-Matching detections")
 
 
 
