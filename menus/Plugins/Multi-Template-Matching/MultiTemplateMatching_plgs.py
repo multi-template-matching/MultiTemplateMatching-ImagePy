@@ -1,6 +1,7 @@
 from imagepy import IPy
 from imagepy.core.engine  import Free
-from imagepy.core.manager import ImageManager
+from imagepy.core.manager import ImageManager, RoiManager
+#from imagepy.core.roi.rectangleroi import RectangleRoi # cant import roi
 import cv2, MTM
 import numpy as np
 
@@ -72,9 +73,17 @@ class MultiTempMatching(Free):
                                       para["overlap-thresh"]
                                       )
         
-        
+        # Display table
         IPy.show_table(tableHit, "Multi-Template-Matching detections")
-
+        
+        '''
+        # Show ROI
+        for index, row in tableHit.iterrows():
+            x,y,width,height = row["BBox"]
+            roi = RectangleRoi(x, y, x+width, y+height)
+            name = "{}-{}".format(index, row["TemplateName"]) 
+            RoiManager.add(name, roi)
+        '''
 
 
 # Define list of plugin defined here
