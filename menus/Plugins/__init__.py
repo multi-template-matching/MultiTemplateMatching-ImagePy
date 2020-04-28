@@ -1,1 +1,0 @@
-catlog = ["MultiTemplateMatching_plgs"]
