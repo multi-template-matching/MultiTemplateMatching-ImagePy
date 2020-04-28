@@ -29,14 +29,7 @@ class ComputeMap(Free):
         
         method = methods[ para['method'] ] # para['method'] returns the selected string
         
-        if template.dtype == "float64" or image.dtype == "float64": 
-            raise ValueError("64-bit not supported, max 32-bit")
-        
-        ## Compute correlation map
-        if template.dtype == "uint8" and image.dtype == "uint8":
-            corrMap = cv2.matchTemplate(template, image, method)
-        else:
-            corrMap = cv2.matchTemplate(np.float32(template), np.float32(image), method)
+        corrMap = MTM.computeScoreMap(template, image, method)
         
         IPy.show_img([corrMap], "Correlation map")
         
@@ -81,3 +74,8 @@ class MultiTempMatching(Free):
         
         
         IPy.showTable(tableHit, "Multi-Template-Matching detections")
+
+
+
+# Define list of plugin defined here
+plgs = [ComputeMap, MultiTempMatching]
